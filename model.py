@@ -4,6 +4,8 @@ import matplotlib.pyplot as plt
 import copy # To copy a list / objects
 import random # To decide on tie classes
 import pickle
+from io import BytesIO
+import base64
 
 ### Loading code
 # 1. Load Data
