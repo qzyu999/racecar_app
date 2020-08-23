@@ -1898,34 +1898,40 @@ if __name__ == "__main__":
     _ = s6_a.train()
 
     ### Pickle the models
-    # L-track
-    pickle.dump(v1_a, open('vi_l_1.pkl', 'wb'))
-    pickle.dump(v1_a, open('vi_l_2.pkl', 'wb'))
+    model_data = [v2_a, v1_a, q2_b, q1_e, s2_f, s1_b, v4_a, v3_d, q4_b, q3_a,
+        s4_a, s3, v6_a, v5_a, q6_a, q5_d, s6_a, s5_b]
+    
+    PIK = "pickle.dat"
+    with open(PIK, 'wb') as f:
+        pickle.dump(model_data, f)
+    # # L-track
+    # pickle.dump(v2_a, open('vi_l_1.pkl', 'wb'))
+    # pickle.dump(v1_a, open('vi_l_2.pkl', 'wb'))
 
-    pickle.dump(q2_b, open('ql_l_1.pkl', 'wb'))
-    pickle.dump(q1_e, open('ql_l_2.pkl', 'wb'))
+    # pickle.dump(q2_b, open('ql_l_1.pkl', 'wb'))
+    # pickle.dump(q1_e, open('ql_l_2.pkl', 'wb'))
 
-    pickle.dump(s2_f, open('sa_l_1.pkl', 'wb'))
-    pickle.dump(s1_b, open('sa_l_2.pkl', 'wb'))
+    # pickle.dump(s2_f, open('sa_l_1.pkl', 'wb'))
+    # pickle.dump(s1_b, open('sa_l_2.pkl', 'wb'))
 
-    # O-track
-    pickle.dump(v4_a, open('vi_o_1.pkl', 'wb'))
-    pickle.dump(v3_d, open('vi_o_2.pkl', 'wb'))
+    # # O-track
+    # pickle.dump(v4_a, open('vi_o_1.pkl', 'wb'))
+    # pickle.dump(v3_d, open('vi_o_2.pkl', 'wb'))
 
-    pickle.dump(q4_b, open('ql_o_1.pkl', 'wb'))
-    pickle.dump(q3_a, open('ql_o_2.pkl', 'wb'))
+    # pickle.dump(q4_b, open('ql_o_1.pkl', 'wb'))
+    # pickle.dump(q3_a, open('ql_o_2.pkl', 'wb'))
 
-    pickle.dump(s4_a, open('sa_o_1.pkl', 'wb'))
-    pickle.dump(s3, open('sa_o_2.pkl', 'wb'))
+    # pickle.dump(s4_a, open('sa_o_1.pkl', 'wb'))
+    # pickle.dump(s3, open('sa_o_2.pkl', 'wb'))
 
-    # R-track
-    pickle.dump(v6_a, open('vi_r_1.pkl', 'wb'))
-    pickle.dump(v5_a, open('vi_r_2.pkl', 'wb'))
+    # # R-track
+    # pickle.dump(v6_a, open('vi_r_1.pkl', 'wb'))
+    # pickle.dump(v5_a, open('vi_r_2.pkl', 'wb'))
 
-    pickle.dump(q6_a, open('ql_r_1.pkl', 'wb'))
-    pickle.dump(q5_d, open('ql_r_2.pkl', 'wb'))
+    # pickle.dump(q6_a, open('ql_r_1.pkl', 'wb'))
+    # pickle.dump(q5_d, open('ql_r_2.pkl', 'wb'))
 
-    pickle.dump(s6_a, open('sa_r_1.pkl', 'wb'))
-    pickle.dump(s5_b, open('sa_r_2.pkl', 'wb'))
+    # pickle.dump(s6_a, open('sa_r_1.pkl', 'wb'))
+    # pickle.dump(s5_b, open('sa_r_2.pkl', 'wb'))
 
-    print("Finished training.")
+    # print("Finished training.")
