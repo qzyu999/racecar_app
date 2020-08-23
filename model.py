@@ -5,6 +5,53 @@ import copy # To copy a list / objects
 import random # To decide on tie classes
 import pickle
 
+### Loading code
+# 1. Load Data
+l_track = pd.read_csv('L-track.txt', skiprows=1, header=None)
+l_track_dim = pd.read_csv('L-track.txt').columns.values
+
+o_track = pd.read_csv('O-track.txt', skiprows=1, header=None)
+o_track_dim = pd.read_csv('O-track.txt').columns.values
+o_track_dim[1] = '25'
+
+r_track = pd.read_csv('R-track.txt', skiprows=1, header=None)
+r_track_dim = pd.read_csv('R-track.txt').columns.values
+
+def load_track(track, track_dim):
+    """Load the track.txt file and do preprocessing.
+
+    The load_track() function will preprocess the racertack
+    so that it can be represented in a numpy format where
+    the characters are converted to integers. Boundary states
+    of (#) are converted to (0), the starting zone (S) is
+    converted to (1), the finishing zone (F) is converted
+    to (2), and the racetrack (.) is converted to 3.
+
+    Args:
+        track (pandas dataframe): The track after being
+            loaded from the textfile.
+        track_dim (numpy array): An array of the dimensions
+            of the racetrack.
+    Returns:
+        track_init (numpy matrix): The racetrack after
+            being converted to a numpy matrix.
+    """
+    track_dim = [int(dim) for dim in track_dim]
+    track_init = np.zeros(track_dim)
+    for row_index in range(track_dim[0]):
+        row_array = np.array(list(track.iloc[row_index,:].values[0]))
+        row_array[row_array == '#'] = 0
+        row_array[row_array == 'S'] = 1
+        row_array[row_array == 'F'] = 2
+        row_array[row_array == '.'] = 3
+        track_init[row_index,] = row_array
+        
+    return track_init
+
+l_track_np = load_track(track=l_track, track_dim=l_track_dim)
+o_track_np = load_track(track=o_track, track_dim=o_track_dim)
+r_track_np = load_track(track=r_track, track_dim=r_track_dim)
+
 # 2. Reinforcement Learning
 class value_iteration(object):
     """Implement the Value Iteration (VI) algorithm.
@@ -1725,3 +1772,155 @@ def plot_paths(model_list, plot_title, seed_list, mkr_size=20,
 
     return figdata_png
     # plt.savefig(img_name)
+
+# 3. L-track
+# 3.1 Value Iteration
+## Crash type 1
+random.seed(1)
+v1_a = value_iteration(test_board=l_track_np, discount_rate=0.7,
+                        bellman_error=0.001, crash_type=1)
+_ = v1_a.train()
+
+## Crash type 2
+random.seed(1)
+v2_a = value_iteration(test_board=l_track_np, discount_rate=0.8,
+                        bellman_error=0.01, crash_type=2)
+_ = v2_a.train()
+
+# 3.2 Q-learning
+## Crash type 1
+random.seed(1)
+q1_e = q_learning(test_board=l_track_np, discount_rate=0.7, epsilon=0.1,
+                  learning_rate=0.1, max_episodes=2000, crash_type=1)
+_ = q1_e.train()
+
+## Crash type 2
+random.seed(1)
+q2_b = q_learning(test_board=l_track_np, discount_rate=0.7, epsilon=0.1,
+                  learning_rate=0.1, max_episodes=1000, crash_type=2)
+_ = q2_b.train()
+
+# 3.3 SARSA
+## Crash type 1
+random.seed(1)
+s1_b = sarsa(test_board=l_track_np, discount_rate=0.85, epsilon=0.1,
+              learning_rate=0.1, max_episodes=1000, crash_type=1)
+_ = s1_b.train()
+
+## Crash type 2
+random.seed(1)
+s2_f = sarsa(test_board=l_track_np, discount_rate=0.6, epsilon=0.1,
+              learning_rate=0.1, max_episodes=2000, crash_type=2)
+_ = s2_f.train()
+
+# 4. O-track
+### Crash type 1
+random.seed(1)
+v3_d = value_iteration(test_board=o_track_np, discount_rate=0.6,
+                        bellman_error=0.01, crash_type=1)
+_ = v3_d.train()
+
+### Crash type 2
+random.seed(1)
+v4_a = value_iteration(test_board=o_track_np, discount_rate=0.9,
+                        bellman_error=0.1, crash_type=2)
+_ = v4_a.train()
+
+## 4.2 Q-learning
+### Crash type 1
+random.seed(1)
+q3_a = q_learning(test_board=o_track_np, discount_rate=0.9, epsilon=0.1,
+                  learning_rate=0.1, max_episodes=1000, crash_type=1)
+_ = q3_a.train()
+
+### Crash type 2
+random.seed(1)
+q4_b = q_learning(test_board=o_track_np, discount_rate=0.9, epsilon=0.1,
+                  learning_rate=0.1, max_episodes=2000, crash_type=2)
+_ = q4_b.train()
+
+# 4.3 SARSA
+## Crash type 1
+random.seed(1)
+s3 = sarsa(test_board=o_track_np, discount_rate=0.9, epsilon=0.1,
+            learning_rate=0.1, max_episodes=1000, crash_type=1)
+_ = s3.train()
+
+### Crash type 2
+random.seed(1)
+s4_a = sarsa(test_board=o_track_np, discount_rate=0.8, epsilon=0.1,
+              learning_rate=0.1, max_episodes=1000, crash_type=2)
+_ = s4_a.train()
+
+# 5. R-track
+## 5.1 Value Iteration
+### Crash type 1
+random.seed(1)
+v5_a = value_iteration(test_board=r_track_np, discount_rate=0.9,
+                        bellman_error=0.001, crash_type=1)
+_ = v5_a.train()
+
+### Crash type 2
+random.seed(1)
+v6_a = value_iteration(test_board=r_track_np, discount_rate=0.9,
+                        bellman_error=0.01, crash_type=2)
+_ = v6_a.train()
+
+# 5.2 Q-learning
+### Crash type 1
+random.seed(1)
+q5_d = q_learning(test_board=r_track_np, discount_rate=0.7, epsilon=0.1,
+                  learning_rate=0.1, max_episodes=1000, crash_type=1)
+_ = q5_d.train()
+
+### Crash type 2
+random.seed(1)
+q6_a = q_learning(test_board=r_track_np, discount_rate=0.8, epsilon=0.1,
+                  learning_rate=0.1, max_episodes=1000, crash_type=2)
+_ = q6_a.train()
+
+## 5.3 SARSA
+### Crash type 1
+random.seed(1)
+s5_b = sarsa(test_board=r_track_np, discount_rate=0.9, epsilon=0.1,
+              learning_rate=0.1, max_episodes=2000, crash_type=1)
+_ = s5_b.train()
+
+### Crash type 2
+random.seed(1)
+s6_a = sarsa(test_board=r_track_np, discount_rate=0.8, epsilon=0.1,
+              learning_rate=0.1, max_episodes=1000, crash_type=2)
+_ = s6_a.train()
+
+### Pickle the models
+# L-track
+pickle.dump(v1_a, open('vi_l_1.pkl', 'wb'))
+pickle.dump(v1_a, open('vi_l_2.pkl', 'wb'))
+
+pickle.dump(q2_b, open('ql_l_1.pkl', 'wb'))
+pickle.dump(q1_e, open('ql_l_2.pkl', 'wb'))
+
+pickle.dump(s2_f, open('sa_l_1.pkl', 'wb'))
+pickle.dump(s1_b, open('sa_l_2.pkl', 'wb'))
+
+# O-track
+pickle.dump(v4_a, open('vi_o_1.pkl', 'wb'))
+pickle.dump(v3_d, open('vi_o_2.pkl', 'wb'))
+
+pickle.dump(q4_b, open('ql_o_1.pkl', 'wb'))
+pickle.dump(q3_a, open('ql_o_2.pkl', 'wb'))
+
+pickle.dump(s4_a, open('sa_o_1.pkl', 'wb'))
+pickle.dump(s3, open('sa_o_2.pkl', 'wb'))
+
+# R-track
+pickle.dump(v6_a, open('vi_r_1.pkl', 'wb'))
+pickle.dump(v5_a, open('vi_r_2.pkl', 'wb'))
+
+pickle.dump(q6_a, open('ql_r_1.pkl', 'wb'))
+pickle.dump(q5_d, open('ql_r_2.pkl', 'wb'))
+
+pickle.dump(s6_a, open('sa_r_1.pkl', 'wb'))
+pickle.dump(s5_b, open('sa_r_2.pkl', 'wb'))
+
+print("Finished training.")
