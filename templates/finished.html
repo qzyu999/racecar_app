@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<h1>Reinforcement Learning Racing Game</h1>
+{% endblock %}
+
+{% block body %}
+<div class="login">
+    <body>Race completed.
+        <button onclick="goBack()">Race again?</button>
+        <script>
+        function goBack() {
+          window.history.back();
+        }
+        </script>     
+    </body>
+    <br>
+    <body>
+    </body>
+   <br>
+   <br>
+   <h2>Race Statistics</h2>
+   {{ table }}
+   <h2>Race Map</h2>
+   {{ model_plot }}
+ </div>
+ {% endblock %}

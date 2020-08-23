@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<h1>Reinforcement Learning Racing Game</h1>
+{% endblock %}
+
+{% block body %}
+<div class="login">
+    <body>Select your crash case, track type, car model, and car number.</body>
+    <br>
+    <body>
+        <UL>
+            <LI> Crash case: Soft reset (0) or Hard reset (1)
+            <LI> Track type: 'L' (0), 'O' (1), or 'R' (2)
+            <LI> Car model: Value Iteration (0), Q-Learning (1), or SARSA (2)
+            <LI> Car number: 0-99
+        </UL>
+    </body>
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('race')}}"method="post">
+    	<input type="text" name="crash_case" placeholder="Crash case [0-1]" required="required" />
+        <input type="text" name="track_type" placeholder="Track type [0-2]" required="required" />
+        <input type="text" name="car_model" placeholder="Car model [0-2]" required="required" />
+		<input type="text" name="car_number" placeholder="Car number [0-99]" required="required" />
+
+        <button type="submit" class="btn btn-primary btn-block btn-large">Race against the agents!</button>
+    </form>
+
+   <br>
+   <br>
+   {{ time_text }}
+   {{ model_plot }}
+
+ </div>
+ {% endblock %}
