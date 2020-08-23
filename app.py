@@ -15,7 +15,8 @@ from model import sarsa
 from model import plot_paths
 
 app = Flask(__name__, template_folder="templates")
-
+global agent_list
+agent_list = None
 # def load_agents():
 #     if __name__ == "__main__":
         # L-track
@@ -158,7 +159,6 @@ if __name__ == "__main__":
         ql_o_2, sa_o_1, sa_o_2, vi_r_1, vi_r_2, ql_r_1, ql_r_2, sa_r_1,\
         sa_r_2 = loaded_agents
 
-    global agent_list
     agent_list = [[[vi_l_1, ql_l_1, sa_l_1],
                     [vi_o_1, ql_o_1, sa_o_1],
                     [vi_r_1, ql_r_1, sa_r_1]],
