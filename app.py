@@ -14,7 +14,7 @@ from model import q_learning
 from model import sarsa
 from model import plot_paths
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder="templates")
 if __name__ == "__main__":
     # L-track
     vi_l_1 = pickle.load(open('vi_l_1.pkl', 'rb'))
