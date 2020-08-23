@@ -58,13 +58,13 @@ def load_agents():
         # Crash type -> Track type -> Car type
         # [crash1_list, crash2_list]
         # crash1_list:[l_track_list, o_track_list, r_track_list]
-        agent_list = [[[vi_l_1, ql_l_1, sa_l_1],
+        ordered_agents = [[[vi_l_1, ql_l_1, sa_l_1],
                         [vi_o_1, ql_o_1, sa_o_1],
                         [vi_r_1, ql_r_1, sa_r_1]],
                     [[vi_l_2, ql_l_2, sa_l_2],
                         [vi_o_2, ql_o_2, sa_o_2],
                         [vi_r_2, ql_r_2, sa_r_2]]]
-    return agent_list
+    return ordered_agents
 
 # Declare your table
 class ItemTable(Table):
