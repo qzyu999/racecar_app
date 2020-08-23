@@ -16,8 +16,8 @@ from model import plot_paths
 
 app = Flask(__name__, template_folder="templates")
 
-def load_agents():
-    if __name__ == "__main__":
+# def load_agents():
+#     if __name__ == "__main__":
         # L-track
         # vi_l_1 = pickle.load(open('vi_l_1.pkl', 'rb'))
         # vi_l_2 = pickle.load(open('vi_l_2.pkl', 'rb'))
@@ -47,24 +47,25 @@ def load_agents():
 
         # sa_r_1 = pickle.load(open('sa_r_1.pkl', 'rb'))
         # sa_r_2 = pickle.load(open('sa_r_2.pkl', 'rb'))
-        PIK = 'pickle.dat'
-        with open(PIK, "rb") as f:
-            loaded_agents = pickle.load(f)
+        # PIK = 'pickle.dat'
+        # with open(PIK, "rb") as f:
+        #     loaded_agents = pickle.load(f)
 
-        vi_l_1, vi_l_2, ql_l_1, ql_l_2, sa_l_1, sa_l_2, vi_o_1, vi_o_2, ql_o_1,\
-            ql_o_2, sa_o_1, sa_o_2, vi_r_1, vi_r_2, ql_r_1, ql_r_2, sa_r_1,\
-            sa_r_2 = loaded_agents
+        # vi_l_1, vi_l_2, ql_l_1, ql_l_2, sa_l_1, sa_l_2, vi_o_1, vi_o_2, ql_o_1,\
+        #     ql_o_2, sa_o_1, sa_o_2, vi_r_1, vi_r_2, ql_r_1, ql_r_2, sa_r_1,\
+        #     sa_r_2 = loaded_agents
         # Categorize the agents into lists
         # Crash type -> Track type -> Car type
         # [crash1_list, crash2_list]
         # crash1_list:[l_track_list, o_track_list, r_track_list]
-        ordered_agents = [[[vi_l_1, ql_l_1, sa_l_1],
-                        [vi_o_1, ql_o_1, sa_o_1],
-                        [vi_r_1, ql_r_1, sa_r_1]],
-                    [[vi_l_2, ql_l_2, sa_l_2],
-                        [vi_o_2, ql_o_2, sa_o_2],
-                        [vi_r_2, ql_r_2, sa_r_2]]]
-    return ordered_agents
+        # ordered_agents = [[[vi_l_1, ql_l_1, sa_l_1],
+        #                 [vi_o_1, ql_o_1, sa_o_1],
+        #                 [vi_r_1, ql_r_1, sa_r_1]],
+        #             [[vi_l_2, ql_l_2, sa_l_2],
+        #                 [vi_o_2, ql_o_2, sa_o_2],
+        #                 [vi_r_2, ql_r_2, sa_r_2]]]
+        # global agent_list = ordered_agents
+    # return ordered_agents
 
 # Declare your table
 class ItemTable(Table):
@@ -99,7 +100,7 @@ def race():
 # Catch errors
 
     # Agent setup
-    agent_list = load_agents()
+    # agent_list = load_agents()
     agent_setup = agent_list[crash_type][map_type]
     user_car = agent_setup[car_model]
     computer_cars = [rl_model for rl_model in agent_setup if\
@@ -148,6 +149,21 @@ def race():
 
     return render_template('finished.html', model_plot=model_plot, table=table)
 
-
 if __name__ == "__main__":
+    PIK = 'pickle.dat'
+    with open(PIK, "rb") as f:
+        loaded_agents = pickle.load(f)
+
+    vi_l_1, vi_l_2, ql_l_1, ql_l_2, sa_l_1, sa_l_2, vi_o_1, vi_o_2, ql_o_1,\
+        ql_o_2, sa_o_1, sa_o_2, vi_r_1, vi_r_2, ql_r_1, ql_r_2, sa_r_1,\
+        sa_r_2 = loaded_agents
+
+    global agent_list
+    agent_list = [[[vi_l_1, ql_l_1, sa_l_1],
+                    [vi_o_1, ql_o_1, sa_o_1],
+                    [vi_r_1, ql_r_1, sa_r_1]],
+                [[vi_l_2, ql_l_2, sa_l_2],
+                    [vi_o_2, ql_o_2, sa_o_2],
+                    [vi_r_2, ql_r_2, sa_r_2]]]
+
     app.run(debug=True)
