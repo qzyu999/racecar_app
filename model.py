@@ -1637,3 +1637,91 @@ class sarsa(object):
 
             if (self.finished): # Check if agent crosses finish line
                 break
+
+# Plot racers
+def plot_paths(model_list, plot_title, seed_list, mkr_size=20,
+                size_divide=2, alpha_level=1,
+                img_name='/static/images/new_plot.png'):
+    """Plot the racetrack and resulting paths for the agent.
+
+    The plot_paths() function will take in a trained
+    model and test it over a range of random seeds. It
+    will plot the racetrack and the resulting paths taken
+    by the agent on each run through the racetrack. It
+    will also print the following statistics: mean,
+    median, max, and min for the number of steps taken
+    for the agent to finish.
+
+    Args:
+        model (class object): A trained model.
+        plot_title (string): The title for the plot.
+        seeds (range(x)): A range of numbers for the
+            random number generator.
+        size_divide (number): The value to divide the
+            plot dimensions by to reduce the size.
+        img_name (string): Name of file to save.
+        alpha_level (number): A number for the
+            transparency of the lines in the plot.
+    Returns:
+        [total_races, time_stats, stall_stats,
+        crash_stats] (list): A list of the
+            statistics for the agent.
+    """
+    # Initialize variables
+    size_y = model_list[0].n_rows / size_divide
+    size_x = model_list[0].n_cols / size_divide
+    fig, ax = plt.subplots(figsize=(size_x, size_y))
+    fig.suptitle(plot_title, fontsize=20)
+    ax.invert_yaxis()
+
+    # Identify the boundary, start, and end
+    # coordinates on the racetrack
+    boundary_states = model_list[0].boundary_states
+    start_coords = model_list[0].start_coords
+    goal_coords = model_list[0].goal_coords
+
+    for idx in range(len(boundary_states)): # Plot boundaries
+        ax.plot(boundary_states[idx][1],
+                boundary_states[idx][0], 's',
+                color='brown', markersize=mkr_size)
+
+    for idx in range(len(start_coords)): # Plot start zone
+        ax.plot(start_coords[idx][1],
+                start_coords[idx][0], 's', color='red')
+
+    for idx in range(len(goal_coords)): # Plot finish zone
+        ax.plot(goal_coords[idx][1],
+                goal_coords[idx][0], 's', color='red')
+
+    lines = []
+    for model_idx in list(range(len(model_list))):
+        seed = seed_list[model_idx]
+        random.seed(seed)
+        model = model_list[model_idx]
+        model.test(print_results=False)
+        test_path = model.visited_coords
+
+        x_coords, y_coords = [], [] # Plot each path
+        for coord in test_path:
+            x_coords.append(coord[0])
+            y_coords.append(coord[1])
+        
+        # Check if beta=1 or 2
+        if (model.crash_type == 1):
+            lines += ax.plot(y_coords, x_coords, 'o',
+                    linestyle='dashed', alpha=alpha_level)
+        else:
+            lines += ax.plot(y_coords, x_coords, 'o',
+                    linestyle='solid', alpha=alpha_level)
+    plt.legend(lines, ('Your car',
+        str('Agent ' + str(seed_list[1])),
+        str('Agent ' + str(seed_list[2]))),
+        bbox_to_anchor=(1, 0.7))
+
+    figfile = BytesIO()
+    plt.savefig(figfile, format='png')
+    figfile.seek(0)  # rewind to beginning of file
+    figdata_png = base64.b64encode(figfile.getvalue()).decode()
+
+    return figdata_png
+    # plt.savefig(img_name)
