@@ -7,15 +7,15 @@ import pickle
 
 ### Loading code
 # 1. Load Data
-l_track = pd.read_csv('L-track.txt', skiprows=1, header=None)
-l_track_dim = pd.read_csv('L-track.txt').columns.values
+# l_track = pd.read_csv('L-track.txt', skiprows=1, header=None)
+# l_track_dim = pd.read_csv('L-track.txt').columns.values
 
-o_track = pd.read_csv('O-track.txt', skiprows=1, header=None)
-o_track_dim = pd.read_csv('O-track.txt').columns.values
-o_track_dim[1] = '25'
+# o_track = pd.read_csv('O-track.txt', skiprows=1, header=None)
+# o_track_dim = pd.read_csv('O-track.txt').columns.values
+# o_track_dim[1] = '25'
 
-r_track = pd.read_csv('R-track.txt', skiprows=1, header=None)
-r_track_dim = pd.read_csv('R-track.txt').columns.values
+# r_track = pd.read_csv('R-track.txt', skiprows=1, header=None)
+# r_track_dim = pd.read_csv('R-track.txt').columns.values
 
 def load_track(track, track_dim):
     """Load the track.txt file and do preprocessing.
@@ -48,9 +48,9 @@ def load_track(track, track_dim):
         
     return track_init
 
-l_track_np = load_track(track=l_track, track_dim=l_track_dim)
-o_track_np = load_track(track=o_track, track_dim=o_track_dim)
-r_track_np = load_track(track=r_track, track_dim=r_track_dim)
+# l_track_np = load_track(track=l_track, track_dim=l_track_dim)
+# o_track_np = load_track(track=o_track, track_dim=o_track_dim)
+# r_track_np = load_track(track=r_track, track_dim=r_track_dim)
 
 # 2. Reinforcement Learning
 class value_iteration(object):
