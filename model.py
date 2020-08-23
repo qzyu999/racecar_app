@@ -1776,151 +1776,151 @@ def plot_paths(model_list, plot_title, seed_list, mkr_size=20,
 # 3. L-track
 # 3.1 Value Iteration
 ## Crash type 1
-random.seed(1)
-v1_a = value_iteration(test_board=l_track_np, discount_rate=0.7,
-                        bellman_error=0.001, crash_type=1)
-_ = v1_a.train()
+# random.seed(1)
+# v1_a = value_iteration(test_board=l_track_np, discount_rate=0.7,
+#                         bellman_error=0.001, crash_type=1)
+# _ = v1_a.train()
 
-## Crash type 2
-random.seed(1)
-v2_a = value_iteration(test_board=l_track_np, discount_rate=0.8,
-                        bellman_error=0.01, crash_type=2)
-_ = v2_a.train()
+# ## Crash type 2
+# random.seed(1)
+# v2_a = value_iteration(test_board=l_track_np, discount_rate=0.8,
+#                         bellman_error=0.01, crash_type=2)
+# _ = v2_a.train()
 
-# 3.2 Q-learning
-## Crash type 1
-random.seed(1)
-q1_e = q_learning(test_board=l_track_np, discount_rate=0.7, epsilon=0.1,
-                  learning_rate=0.1, max_episodes=2000, crash_type=1)
-_ = q1_e.train()
+# # 3.2 Q-learning
+# ## Crash type 1
+# random.seed(1)
+# q1_e = q_learning(test_board=l_track_np, discount_rate=0.7, epsilon=0.1,
+#                   learning_rate=0.1, max_episodes=2000, crash_type=1)
+# _ = q1_e.train()
 
-## Crash type 2
-random.seed(1)
-q2_b = q_learning(test_board=l_track_np, discount_rate=0.7, epsilon=0.1,
-                  learning_rate=0.1, max_episodes=1000, crash_type=2)
-_ = q2_b.train()
+# ## Crash type 2
+# random.seed(1)
+# q2_b = q_learning(test_board=l_track_np, discount_rate=0.7, epsilon=0.1,
+#                   learning_rate=0.1, max_episodes=1000, crash_type=2)
+# _ = q2_b.train()
 
-# 3.3 SARSA
-## Crash type 1
-random.seed(1)
-s1_b = sarsa(test_board=l_track_np, discount_rate=0.85, epsilon=0.1,
-              learning_rate=0.1, max_episodes=1000, crash_type=1)
-_ = s1_b.train()
+# # 3.3 SARSA
+# ## Crash type 1
+# random.seed(1)
+# s1_b = sarsa(test_board=l_track_np, discount_rate=0.85, epsilon=0.1,
+#               learning_rate=0.1, max_episodes=1000, crash_type=1)
+# _ = s1_b.train()
 
-## Crash type 2
-random.seed(1)
-s2_f = sarsa(test_board=l_track_np, discount_rate=0.6, epsilon=0.1,
-              learning_rate=0.1, max_episodes=2000, crash_type=2)
-_ = s2_f.train()
+# ## Crash type 2
+# random.seed(1)
+# s2_f = sarsa(test_board=l_track_np, discount_rate=0.6, epsilon=0.1,
+#               learning_rate=0.1, max_episodes=2000, crash_type=2)
+# _ = s2_f.train()
 
-# 4. O-track
-### Crash type 1
-random.seed(1)
-v3_d = value_iteration(test_board=o_track_np, discount_rate=0.6,
-                        bellman_error=0.01, crash_type=1)
-_ = v3_d.train()
+# # 4. O-track
+# ### Crash type 1
+# random.seed(1)
+# v3_d = value_iteration(test_board=o_track_np, discount_rate=0.6,
+#                         bellman_error=0.01, crash_type=1)
+# _ = v3_d.train()
 
-### Crash type 2
-random.seed(1)
-v4_a = value_iteration(test_board=o_track_np, discount_rate=0.9,
-                        bellman_error=0.1, crash_type=2)
-_ = v4_a.train()
+# ### Crash type 2
+# random.seed(1)
+# v4_a = value_iteration(test_board=o_track_np, discount_rate=0.9,
+#                         bellman_error=0.1, crash_type=2)
+# _ = v4_a.train()
 
-## 4.2 Q-learning
-### Crash type 1
-random.seed(1)
-q3_a = q_learning(test_board=o_track_np, discount_rate=0.9, epsilon=0.1,
-                  learning_rate=0.1, max_episodes=1000, crash_type=1)
-_ = q3_a.train()
+# ## 4.2 Q-learning
+# ### Crash type 1
+# random.seed(1)
+# q3_a = q_learning(test_board=o_track_np, discount_rate=0.9, epsilon=0.1,
+#                   learning_rate=0.1, max_episodes=1000, crash_type=1)
+# _ = q3_a.train()
 
-### Crash type 2
-random.seed(1)
-q4_b = q_learning(test_board=o_track_np, discount_rate=0.9, epsilon=0.1,
-                  learning_rate=0.1, max_episodes=2000, crash_type=2)
-_ = q4_b.train()
+# ### Crash type 2
+# random.seed(1)
+# q4_b = q_learning(test_board=o_track_np, discount_rate=0.9, epsilon=0.1,
+#                   learning_rate=0.1, max_episodes=2000, crash_type=2)
+# _ = q4_b.train()
 
-# 4.3 SARSA
-## Crash type 1
-random.seed(1)
-s3 = sarsa(test_board=o_track_np, discount_rate=0.9, epsilon=0.1,
-            learning_rate=0.1, max_episodes=1000, crash_type=1)
-_ = s3.train()
+# # 4.3 SARSA
+# ## Crash type 1
+# random.seed(1)
+# s3 = sarsa(test_board=o_track_np, discount_rate=0.9, epsilon=0.1,
+#             learning_rate=0.1, max_episodes=1000, crash_type=1)
+# _ = s3.train()
 
-### Crash type 2
-random.seed(1)
-s4_a = sarsa(test_board=o_track_np, discount_rate=0.8, epsilon=0.1,
-              learning_rate=0.1, max_episodes=1000, crash_type=2)
-_ = s4_a.train()
+# ### Crash type 2
+# random.seed(1)
+# s4_a = sarsa(test_board=o_track_np, discount_rate=0.8, epsilon=0.1,
+#               learning_rate=0.1, max_episodes=1000, crash_type=2)
+# _ = s4_a.train()
 
-# 5. R-track
-## 5.1 Value Iteration
-### Crash type 1
-random.seed(1)
-v5_a = value_iteration(test_board=r_track_np, discount_rate=0.9,
-                        bellman_error=0.001, crash_type=1)
-_ = v5_a.train()
+# # 5. R-track
+# ## 5.1 Value Iteration
+# ### Crash type 1
+# random.seed(1)
+# v5_a = value_iteration(test_board=r_track_np, discount_rate=0.9,
+#                         bellman_error=0.001, crash_type=1)
+# _ = v5_a.train()
 
-### Crash type 2
-random.seed(1)
-v6_a = value_iteration(test_board=r_track_np, discount_rate=0.9,
-                        bellman_error=0.01, crash_type=2)
-_ = v6_a.train()
+# ### Crash type 2
+# random.seed(1)
+# v6_a = value_iteration(test_board=r_track_np, discount_rate=0.9,
+#                         bellman_error=0.01, crash_type=2)
+# _ = v6_a.train()
 
-# 5.2 Q-learning
-### Crash type 1
-random.seed(1)
-q5_d = q_learning(test_board=r_track_np, discount_rate=0.7, epsilon=0.1,
-                  learning_rate=0.1, max_episodes=1000, crash_type=1)
-_ = q5_d.train()
+# # 5.2 Q-learning
+# ### Crash type 1
+# random.seed(1)
+# q5_d = q_learning(test_board=r_track_np, discount_rate=0.7, epsilon=0.1,
+#                   learning_rate=0.1, max_episodes=1000, crash_type=1)
+# _ = q5_d.train()
 
-### Crash type 2
-random.seed(1)
-q6_a = q_learning(test_board=r_track_np, discount_rate=0.8, epsilon=0.1,
-                  learning_rate=0.1, max_episodes=1000, crash_type=2)
-_ = q6_a.train()
+# ### Crash type 2
+# random.seed(1)
+# q6_a = q_learning(test_board=r_track_np, discount_rate=0.8, epsilon=0.1,
+#                   learning_rate=0.1, max_episodes=1000, crash_type=2)
+# _ = q6_a.train()
 
-## 5.3 SARSA
-### Crash type 1
-random.seed(1)
-s5_b = sarsa(test_board=r_track_np, discount_rate=0.9, epsilon=0.1,
-              learning_rate=0.1, max_episodes=2000, crash_type=1)
-_ = s5_b.train()
+# ## 5.3 SARSA
+# ### Crash type 1
+# random.seed(1)
+# s5_b = sarsa(test_board=r_track_np, discount_rate=0.9, epsilon=0.1,
+#               learning_rate=0.1, max_episodes=2000, crash_type=1)
+# _ = s5_b.train()
 
-### Crash type 2
-random.seed(1)
-s6_a = sarsa(test_board=r_track_np, discount_rate=0.8, epsilon=0.1,
-              learning_rate=0.1, max_episodes=1000, crash_type=2)
-_ = s6_a.train()
+# ### Crash type 2
+# random.seed(1)
+# s6_a = sarsa(test_board=r_track_np, discount_rate=0.8, epsilon=0.1,
+#               learning_rate=0.1, max_episodes=1000, crash_type=2)
+# _ = s6_a.train()
 
-### Pickle the models
-# L-track
-pickle.dump(v1_a, open('vi_l_1.pkl', 'wb'))
-pickle.dump(v1_a, open('vi_l_2.pkl', 'wb'))
+# ### Pickle the models
+# # L-track
+# pickle.dump(v1_a, open('vi_l_1.pkl', 'wb'))
+# pickle.dump(v1_a, open('vi_l_2.pkl', 'wb'))
 
-pickle.dump(q2_b, open('ql_l_1.pkl', 'wb'))
-pickle.dump(q1_e, open('ql_l_2.pkl', 'wb'))
+# pickle.dump(q2_b, open('ql_l_1.pkl', 'wb'))
+# pickle.dump(q1_e, open('ql_l_2.pkl', 'wb'))
 
-pickle.dump(s2_f, open('sa_l_1.pkl', 'wb'))
-pickle.dump(s1_b, open('sa_l_2.pkl', 'wb'))
+# pickle.dump(s2_f, open('sa_l_1.pkl', 'wb'))
+# pickle.dump(s1_b, open('sa_l_2.pkl', 'wb'))
 
-# O-track
-pickle.dump(v4_a, open('vi_o_1.pkl', 'wb'))
-pickle.dump(v3_d, open('vi_o_2.pkl', 'wb'))
+# # O-track
+# pickle.dump(v4_a, open('vi_o_1.pkl', 'wb'))
+# pickle.dump(v3_d, open('vi_o_2.pkl', 'wb'))
 
-pickle.dump(q4_b, open('ql_o_1.pkl', 'wb'))
-pickle.dump(q3_a, open('ql_o_2.pkl', 'wb'))
+# pickle.dump(q4_b, open('ql_o_1.pkl', 'wb'))
+# pickle.dump(q3_a, open('ql_o_2.pkl', 'wb'))
 
-pickle.dump(s4_a, open('sa_o_1.pkl', 'wb'))
-pickle.dump(s3, open('sa_o_2.pkl', 'wb'))
+# pickle.dump(s4_a, open('sa_o_1.pkl', 'wb'))
+# pickle.dump(s3, open('sa_o_2.pkl', 'wb'))
 
-# R-track
-pickle.dump(v6_a, open('vi_r_1.pkl', 'wb'))
-pickle.dump(v5_a, open('vi_r_2.pkl', 'wb'))
+# # R-track
+# pickle.dump(v6_a, open('vi_r_1.pkl', 'wb'))
+# pickle.dump(v5_a, open('vi_r_2.pkl', 'wb'))
 
-pickle.dump(q6_a, open('ql_r_1.pkl', 'wb'))
-pickle.dump(q5_d, open('ql_r_2.pkl', 'wb'))
+# pickle.dump(q6_a, open('ql_r_1.pkl', 'wb'))
+# pickle.dump(q5_d, open('ql_r_2.pkl', 'wb'))
 
-pickle.dump(s6_a, open('sa_r_1.pkl', 'wb'))
-pickle.dump(s5_b, open('sa_r_2.pkl', 'wb'))
+# pickle.dump(s6_a, open('sa_r_1.pkl', 'wb'))
+# pickle.dump(s5_b, open('sa_r_2.pkl', 'wb'))
 
-print("Finished training.")
+# print("Finished training.")
