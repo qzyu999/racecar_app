@@ -15,8 +15,23 @@ from model import sarsa
 from model import plot_paths
 
 app = Flask(__name__, template_folder="templates")
-global agent_list
-agent_list = None
+if __name__ == "__main__":
+    PIK = 'pickle.dat'
+    with open(PIK, "rb") as f:
+        loaded_agents = pickle.load(f)
+
+    vi_l_1, vi_l_2, ql_l_1, ql_l_2, sa_l_1, sa_l_2, vi_o_1, vi_o_2, ql_o_1,\
+        ql_o_2, sa_o_1, sa_o_2, vi_r_1, vi_r_2, ql_r_1, ql_r_2, sa_r_1,\
+        sa_r_2 = loaded_agents
+
+    global agent_list
+    agent_list = [[[vi_l_1, ql_l_1, sa_l_1],
+                    [vi_o_1, ql_o_1, sa_o_1],
+                    [vi_r_1, ql_r_1, sa_r_1]],
+                [[vi_l_2, ql_l_2, sa_l_2],
+                    [vi_o_2, ql_o_2, sa_o_2],
+                    [vi_r_2, ql_r_2, sa_r_2]]]
+
 # def load_agents():
 #     if __name__ == "__main__":
         # L-track
@@ -151,19 +166,4 @@ def race():
     return render_template('finished.html', model_plot=model_plot, table=table)
 
 if __name__ == "__main__":
-    PIK = 'pickle.dat'
-    with open(PIK, "rb") as f:
-        loaded_agents = pickle.load(f)
-
-    vi_l_1, vi_l_2, ql_l_1, ql_l_2, sa_l_1, sa_l_2, vi_o_1, vi_o_2, ql_o_1,\
-        ql_o_2, sa_o_1, sa_o_2, vi_r_1, vi_r_2, ql_r_1, ql_r_2, sa_r_1,\
-        sa_r_2 = loaded_agents
-
-    agent_list = [[[vi_l_1, ql_l_1, sa_l_1],
-                    [vi_o_1, ql_o_1, sa_o_1],
-                    [vi_r_1, ql_r_1, sa_r_1]],
-                [[vi_l_2, ql_l_2, sa_l_2],
-                    [vi_o_2, ql_o_2, sa_o_2],
-                    [vi_r_2, ql_r_2, sa_r_2]]]
-
     app.run(debug=True)
