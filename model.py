@@ -1773,9 +1773,9 @@ def plot_paths(model_list, plot_title, seed_list, mkr_size=20,
     return figdata_png
     # plt.savefig(img_name)
 
-# 3. L-track
-# 3.1 Value Iteration
-## Crash type 1
+# # 3. L-track
+# # 3.1 Value Iteration
+# ## Crash type 1
 # random.seed(1)
 # v1_a = value_iteration(test_board=l_track_np, discount_rate=0.7,
 #                         bellman_error=0.001, crash_type=1)
@@ -1892,35 +1892,35 @@ def plot_paths(model_list, plot_title, seed_list, mkr_size=20,
 #               learning_rate=0.1, max_episodes=1000, crash_type=2)
 # _ = s6_a.train()
 
-# ### Pickle the models
-# # L-track
-# pickle.dump(v1_a, open('vi_l_1.pkl', 'wb'))
-# pickle.dump(v1_a, open('vi_l_2.pkl', 'wb'))
+### Pickle the models
+# L-track
+pickle.dump(v1_a, open('vi_l_1.pkl', 'wb'))
+pickle.dump(v1_a, open('vi_l_2.pkl', 'wb'))
 
-# pickle.dump(q2_b, open('ql_l_1.pkl', 'wb'))
-# pickle.dump(q1_e, open('ql_l_2.pkl', 'wb'))
+pickle.dump(q2_b, open('ql_l_1.pkl', 'wb'))
+pickle.dump(q1_e, open('ql_l_2.pkl', 'wb'))
 
-# pickle.dump(s2_f, open('sa_l_1.pkl', 'wb'))
-# pickle.dump(s1_b, open('sa_l_2.pkl', 'wb'))
+pickle.dump(s2_f, open('sa_l_1.pkl', 'wb'))
+pickle.dump(s1_b, open('sa_l_2.pkl', 'wb'))
 
-# # O-track
-# pickle.dump(v4_a, open('vi_o_1.pkl', 'wb'))
-# pickle.dump(v3_d, open('vi_o_2.pkl', 'wb'))
+# O-track
+pickle.dump(v4_a, open('vi_o_1.pkl', 'wb'))
+pickle.dump(v3_d, open('vi_o_2.pkl', 'wb'))
 
-# pickle.dump(q4_b, open('ql_o_1.pkl', 'wb'))
-# pickle.dump(q3_a, open('ql_o_2.pkl', 'wb'))
+pickle.dump(q4_b, open('ql_o_1.pkl', 'wb'))
+pickle.dump(q3_a, open('ql_o_2.pkl', 'wb'))
 
-# pickle.dump(s4_a, open('sa_o_1.pkl', 'wb'))
-# pickle.dump(s3, open('sa_o_2.pkl', 'wb'))
+pickle.dump(s4_a, open('sa_o_1.pkl', 'wb'))
+pickle.dump(s3, open('sa_o_2.pkl', 'wb'))
 
-# # R-track
-# pickle.dump(v6_a, open('vi_r_1.pkl', 'wb'))
-# pickle.dump(v5_a, open('vi_r_2.pkl', 'wb'))
+# R-track
+pickle.dump(v6_a, open('vi_r_1.pkl', 'wb'))
+pickle.dump(v5_a, open('vi_r_2.pkl', 'wb'))
 
-# pickle.dump(q6_a, open('ql_r_1.pkl', 'wb'))
-# pickle.dump(q5_d, open('ql_r_2.pkl', 'wb'))
+pickle.dump(q6_a, open('ql_r_1.pkl', 'wb'))
+pickle.dump(q5_d, open('ql_r_2.pkl', 'wb'))
 
-# pickle.dump(s6_a, open('sa_r_1.pkl', 'wb'))
-# pickle.dump(s5_b, open('sa_r_2.pkl', 'wb'))
+pickle.dump(s6_a, open('sa_r_1.pkl', 'wb'))
+pickle.dump(s5_b, open('sa_r_2.pkl', 'wb'))
 
-# print("Finished training.")
+print("Finished training.")
